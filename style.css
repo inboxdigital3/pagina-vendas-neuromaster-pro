@@ -228,8 +228,8 @@ body {
   animation: pulse-glow 2.4s ease-in-out infinite;
 }
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 22px rgba(var(--teal-rgb), 0.35); }
-  50% { box-shadow: 0 0 46px rgba(var(--teal-rgb), 0.65), 0 0 70px rgba(var(--teal-rgb), 0.2); }
+  0%, 100% { box-shadow: 0 0 14px rgba(var(--teal-rgb), 0.25); }
+  50% { box-shadow: 0 0 26px rgba(var(--teal-rgb), 0.45), 0 0 40px rgba(var(--teal-rgb), 0.12); }
 }
 
 /* ════════════════════════════════════════
