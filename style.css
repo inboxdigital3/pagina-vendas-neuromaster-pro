@@ -571,6 +571,25 @@ body {
   grid-column: span 2;
 }
 
+.modulo-card--boas-vindas {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.18);
+  border-style: dashed;
+}
+.modulo-card--boas-vindas .modulo-num {
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 3px;
+}
+
+.modulo-card--conclusao {
+  background: rgba(var(--teal-rgb), 0.05);
+  border-color: rgba(var(--teal-rgb), 0.2);
+  border-style: dashed;
+}
+.modulo-card--conclusao .modulo-num {
+  color: rgba(var(--teal-rgb), 0.6);
+}
+
 .modulo-num {
   display: block;
   font-size: 10px;
