@@ -268,12 +268,12 @@ body {
 
 .hero-img {
   position: absolute;
-  /* Foto recuada para dar mais espaço à coluna de texto (era left:22%, width:78%) */
-  left: 30%;
+  /* Foto recuada para dar mais espaço à coluna de texto alargada */
+  left: 36%;
   right: 0;
   top: 0;
   bottom: 0;
-  width: 70%;
+  width: 64%;
   height: 100%;
   object-fit: cover;
   /* Reposiciona para mostrar André centralizado, cabeça incluída */
@@ -284,13 +284,13 @@ body {
   position: absolute;
   inset: 0;
   background:
-    /* Proteção forte do lado esquerdo (texto) — ajustada para coluna de 620px */
+    /* Proteção forte do lado esquerdo (texto) — ajustada para coluna de 700px */
     linear-gradient(to right,
       rgba(13, 21, 48, 0.99) 0%,
-      rgba(13, 21, 48, 0.97) 36%,
-      rgba(13, 21, 48, 0.82) 52%,
-      rgba(13, 21, 48, 0.30) 65%,
-      transparent 80%
+      rgba(13, 21, 48, 0.97) 40%,
+      rgba(13, 21, 48, 0.82) 56%,
+      rgba(13, 21, 48, 0.30) 68%,
+      transparent 82%
     ),
     /* Sombra suave no topo e fundo para enquadrar */
     linear-gradient(to bottom,
@@ -313,11 +313,12 @@ body {
 .hero-content {
   position: relative;
   z-index: 10;
-  /* Coluna de texto alargada para 52% — texto alinha à esquerda com mais largura */
-  max-width: min(620px, 52vw);
+  /* Coluna alargada: 700px permite "Terapia Neural." em 1 linha a 40px */
+  max-width: min(700px, 54vw);
   /* padding-top: accent-stripe (3px) + nav (54px) + folga (16px) = 73px */
-  padding: 73px var(--wrap-pad) 1.5rem;
-  margin-left: max(var(--wrap-pad), calc((100vw - var(--wrap-max)) / 2));
+  padding: 73px clamp(1rem, 2vw, 2rem) 1.5rem;
+  /* Margem mínima da borda esquerda — reduzida para aproveitar espaço horizontal */
+  margin-left: clamp(1.25rem, 3vw, 2.5rem);
 }
 
 .pre-headline {
