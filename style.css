@@ -571,18 +571,23 @@ body {
   grid-column: span 2;
 }
 
-/* Card 06 — Plexo Pélvico: span 2 para layout 4+2+4 simétrico */
+/* Card 05 — Pescoço/Plexo Celíaco: span 3 (nome mais longo, ocupa 3 cols) */
+.modulos-grid .modulo-card:nth-child(5) {
+  grid-column: span 3;
+}
+
+/* Card 06 — Plexo Pélvico: span 1 — layout 3+1 na linha do meio */
 .modulos-grid .modulo-card:nth-child(6) {
-  grid-column: span 2;
+  grid-column: span 1;
 }
 
 .modulo-card--boas-vindas {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(var(--teal-rgb), 0.05);
+  border-color: rgba(var(--teal-rgb), 0.2);
   border-style: dashed;
 }
 .modulo-card--boas-vindas .modulo-num {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(var(--teal-rgb), 0.6);
   letter-spacing: 3px;
 }
 
@@ -1330,6 +1335,7 @@ details[open] .faq-pergunta { color: var(--teal); }
   .modulo-card--destaque {
     grid-column: span 1;
   }
+  .modulos-grid .modulo-card:nth-child(5),
   .modulos-grid .modulo-card:nth-child(6) {
     grid-column: span 1;
   }
@@ -1407,6 +1413,7 @@ details[open] .faq-pergunta { color: var(--teal); }
     grid-template-columns: 1fr;
   }
   .modulo-card--destaque,
+  .modulos-grid .modulo-card:nth-child(5),
   .modulos-grid .modulo-card:nth-child(6) {
     grid-column: span 1;
   }
