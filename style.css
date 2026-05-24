@@ -241,6 +241,8 @@ body {
    Imagem reposicionada: zoom reduzido, André centralizado.
    Background dividido: navy escuro à esquerda (proteção do texto),
    tom sépia/marrom à direita (combina com parede da foto).
+   Monitor grande (1440+): container centralizado, foto com cap,
+   altura limitada para não ficar esticado demais.
 ════════════════════════════════════════ */
 .hero {
   position: relative;
@@ -266,6 +268,14 @@ body {
   }
 }
 
+/* Monitor grande (altura > 900px): cap adicional para não esticar demais */
+@media (min-height: 901px) {
+  .hero {
+    min-height: min(calc(100vh - 57px), 820px);
+    max-height: 820px;
+  }
+}
+
 .hero-img {
   position: absolute;
   /* Foto recuada para dar mais espaço à coluna de texto alargada */
@@ -273,7 +283,8 @@ body {
   right: 0;
   top: 0;
   bottom: 0;
-  width: 64%;
+  /* Cap absoluto para não crescer demais em monitores largos */
+  width: min(64%, 960px);
   height: 100%;
   object-fit: cover;
   /* Reposiciona para mostrar André centralizado, cabeça incluída */
@@ -317,8 +328,18 @@ body {
   max-width: min(700px, 54vw);
   /* padding-top: accent-stripe (3px) + nav (54px) + folga (16px) = 73px */
   padding: 73px clamp(1rem, 2vw, 2rem) 1.5rem;
-  /* Margem mínima da borda esquerda — reduzida para aproveitar espaço horizontal */
+  /* Notebook (até 1439px): borda esquerda próxima — estado aprovado pela Pat */
   margin-left: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+/* Monitor grande (≥1440px): texto alinhado com a logo da nav.
+   nav-inner tem max-width 1100px centrado — a logo começa em (100vw - 1100px) / 2.
+   hero-content recebe o mesmo margin-left para alinhar o texto com a logo. */
+@media (min-width: 1440px) {
+  .hero-content {
+    margin-left: max(calc((100vw - 1100px) / 2), 2.5rem);
+    max-width: min(700px, 54vw);
+  }
 }
 
 .pre-headline {
