@@ -714,13 +714,14 @@ body {
 
 .bio-foto-wrap {
   position: relative;
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(22, 32, 64, 0.2);
 }
 
 .bio-foto {
   width: 100%;
   border-radius: 16px;
   display: block;
-  box-shadow: 0 24px 64px rgba(22, 32, 64, 0.2);
 }
 
 .bio-foto-badge {
