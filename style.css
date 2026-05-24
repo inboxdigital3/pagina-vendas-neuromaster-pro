@@ -1266,20 +1266,47 @@ details[open] .faq-pergunta { color: var(--teal); }
   margin-bottom: 2.5rem;
 }
 
+/* ─── URGÊNCIA PRÉ-VENDA — faixa centralizada ─── */
 .urgencia-box {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  background: rgba(var(--teal-rgb), 0.1);
-  border: 1px solid rgba(var(--teal-rgb), 0.25);
-  padding: 14px 22px;
-  border-radius: 6px;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
+  gap: 6px;
   margin-bottom: 2.5rem;
+  padding: 2rem 2.5rem;
+  background: linear-gradient(135deg, rgba(var(--teal-rgb), 0.08) 0%, rgba(var(--teal-rgb), 0.04) 100%);
+  border-top: 2px solid rgba(var(--teal-rgb), 0.55);
+  border-bottom: 2px solid rgba(var(--teal-rgb), 0.55);
+  border-left: none;
+  border-right: none;
 }
+
+.urgencia-titulo {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.urgencia-data-grande {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 900;
+  color: var(--teal);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.urgencia-depois {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.5px;
+}
+
+/* Retrocompat: se o HTML ainda usar .urgencia-texto / strong dentro do box antigo */
 .urgencia-box strong { color: var(--teal); }
-.urgencia-texto { flex: 1; }
+.urgencia-texto { display: none; }
 
 .cta-final-detalhe {
   margin-top: 1.25rem;
