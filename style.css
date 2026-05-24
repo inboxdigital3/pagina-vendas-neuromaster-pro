@@ -977,6 +977,7 @@ body {
   text-align: left;
 }
 .oferta-lista li svg { flex-shrink: 0; margin-top: 3px; }
+.oferta-lista li > span { flex: 1; min-width: 0; }
 .oferta-lista li strong { color: var(--white); }
 
 .oferta-acesso {
@@ -998,9 +999,10 @@ body {
   padding: 2rem 1.75rem;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(var(--teal-rgb), 0.1);
   backdrop-filter: blur(10px);
-  /* Estica até o final do card de bônus */
+  /* Estica até o final do card de bônus e distribui conteúdo verticalmente */
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-self: stretch;
 }
 
