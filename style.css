@@ -1006,6 +1006,19 @@ body {
   align-self: stretch;
 }
 
+/* Agrupadores dentro do card de preço */
+.preco-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.acao-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
 .preco-de {
   display: flex;
   align-items: baseline;
