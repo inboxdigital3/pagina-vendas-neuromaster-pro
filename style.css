@@ -356,14 +356,19 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* CTA no hero: garante separação visual clara do bloco de preço abaixo */
-/* opacity e transform forçados — botão não fica travado fora do lugar */
+/* CTA no hero: stagger fadeUp primeiro, depois pulse-glow contínuo.
+   Duas animações em sequência: fadeUp termina em ~1120ms (420ms delay + 700ms),
+   pulse-glow entra em loop a partir daí.
+   Sem !important em transform — não conflita com hover nem com a animação. */
 .hero-content .btn-primary {
   display: block;
   margin-bottom: 0.75rem;
   width: fit-content;
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+  opacity: 0;
+  transform: translateY(24px);
+  animation:
+    fadeUp 0.7s var(--ease) 420ms forwards,
+    pulse-glow 2.4s ease-in-out 1120ms infinite;
 }
 
 .hero-price-hint {
