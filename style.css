@@ -141,14 +141,28 @@ body {
   max-width: var(--wrap-max);
   margin: 0 auto;
   padding: 0 var(--wrap-pad);
-  height: 68px;
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* Logo texto — sempre visível */
+.nav-logo-text {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color var(--normal) var(--ease);
+}
+.nav-logo-text span { color: var(--teal); }
+.nav--scrolled .nav-logo-text { color: var(--white); }
+
+/* Manter compatibilidade caso o <img> ainda exista */
 .nav-logo {
-  height: 36px;
+  height: 30px;
   width: auto;
   filter: brightness(0) invert(1);
   opacity: 0;
@@ -158,27 +172,27 @@ body {
 .nav--scrolled {
   background: rgba(22, 32, 64, 0.97);
   backdrop-filter: blur(16px);
-  box-shadow: 0 2px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
 }
 .nav--scrolled .nav-logo { opacity: 1; }
 
 .nav-cta {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--teal);
   text-decoration: none;
-  border: 1.5px solid var(--teal);
-  padding: 8px 20px;
+  border: 1.5px solid rgba(0, 207, 200, 0.6);
+  padding: 6px 16px;
   border-radius: 4px;
-  opacity: 0;
-  transition: background var(--fast), color var(--fast), opacity var(--normal) var(--ease);
+  opacity: 1;
+  transition: background var(--fast), color var(--fast), border-color var(--fast), opacity var(--normal) var(--ease);
 }
-.nav--scrolled .nav-cta { opacity: 1; }
 .nav-cta:hover {
   background: var(--teal);
   color: var(--navy);
+  border-color: var(--teal);
 }
 
 /* ─── BUTTONS ─────────────────────────── */
@@ -219,11 +233,12 @@ body {
 /* ════════════════════════════════════════
    HERO
    First-fold rule: hero cabe em 1280×720 e 1366×768.
-   Nav (71px) + hero (≤600px) = ≤671px — dentro da viewport menor.
+   Nav (57px) + hero (≤calc(100vh - 57px)) — CTA visível sem scroll.
 ════════════════════════════════════════ */
 .hero {
   position: relative;
-  min-height: min(82vh, 600px);
+  min-height: calc(100vh - 57px);
+  max-height: calc(100vh - 57px);
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -267,63 +282,63 @@ body {
 .hero-content {
   position: relative;
   z-index: 10;
-  max-width: 620px;
-  /* padding-top: accent-stripe (3px) + nav (68px) + folga (16px) = 87px fixo */
-  padding: 87px var(--wrap-pad) 1.5rem;
+  max-width: 580px;
+  /* padding-top: accent-stripe (3px) + nav (54px) + folga (10px) = 67px fixo */
+  padding: 67px var(--wrap-pad) 1rem;
   margin-left: max(var(--wrap-pad), calc((100vw - var(--wrap-max)) / 2));
 }
 
 .pre-headline {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--teal);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .hero-headline {
-  /* Teto 2rem (32px) — máx 3 linhas em 620px. Calibrado para 1280×720. */
-  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  /* Teto 1.75rem (28px) — cabe em 3 linhas em 580px. Calibrado para 1280×720. */
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
   font-weight: 900;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.025em;
   color: var(--white);
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.7rem;
 }
 
 .hero-sub {
-  font-size: clamp(0.8rem, 1.1vw, 0.9375rem);
+  font-size: clamp(0.775rem, 1vw, 0.875rem);
   font-weight: 400;
   color: rgba(255, 255, 255, 0.72);
-  line-height: 1.55;
-  margin-bottom: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0.875rem;
 }
 .hero-sub strong { color: var(--white); font-weight: 700; }
 
 .hero-price-hint {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.45);
-  margin-top: 0.625rem;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 0.5rem;
   letter-spacing: 0.5px;
 }
 
 .hero-social-proof {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 0.875rem;
-  padding-top: 0.875rem;
+  gap: 10px;
+  margin-top: 0.625rem;
+  padding-top: 0.625rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .proof-number {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 900;
   color: var(--teal);
   letter-spacing: -0.03em;
 }
 .proof-label {
-  font-size: 12px;
+  font-size: 11px;
   color: rgba(255, 255, 255, 0.5);
   line-height: 1.4;
   max-width: 180px;
@@ -1177,6 +1192,16 @@ details[open] .faq-pergunta { color: var(--teal); }
   margin-bottom: 1rem;
 }
 
+.footer-logo-text {
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1rem;
+}
+.footer-logo-text span { color: rgba(0, 207, 200, 0.6); }
+
 .footer-texto {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.3);
@@ -1304,6 +1329,7 @@ details[open] .faq-pergunta { color: var(--teal); }
   }
 
   .nav-logo { display: none; }
+  .nav-logo-text { font-size: 13px; }
 }
 
 /* ─── REDUCE MOTION ───────────────────── */
