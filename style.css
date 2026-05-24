@@ -108,6 +108,7 @@ body {
   opacity: 0;
   transform: translateY(24px);
   animation: fadeUp 0.7s var(--ease) forwards;
+  animation-fill-mode: forwards;
 }
 .stagger-in > *:nth-child(1) { animation-delay: 100ms; }
 .stagger-in > *:nth-child(2) { animation-delay: 200ms; }
@@ -356,12 +357,13 @@ body {
 }
 
 /* CTA no hero: garante separação visual clara do bloco de preço abaixo */
-/* opacity: 1 forçado — garante visibilidade mesmo se animação stagger não completar */
+/* opacity e transform forçados — botão não fica travado fora do lugar */
 .hero-content .btn-primary {
   display: block;
   margin-bottom: 0.75rem;
   width: fit-content;
   opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 .hero-price-hint {
