@@ -278,13 +278,12 @@ body {
 
 .hero-img {
   position: absolute;
-  /* Foto recuada para dar mais espaço à coluna de texto alargada */
-  left: 36%;
+  /* Foto ancorada à direita com tamanho FIXO — mesmo visual em 1280px, 1366px, 1920px */
   right: 0;
+  left: auto;
   top: 0;
   bottom: 0;
-  /* Cap absoluto para não crescer demais em monitores largos */
-  width: min(64%, 960px);
+  width: 780px;
   height: 100%;
   object-fit: cover;
   /* Reposiciona para mostrar André centralizado, cabeça incluída */
