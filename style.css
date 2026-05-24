@@ -546,7 +546,7 @@ body {
 
 .modulos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
   position: relative;
   z-index: 1;
@@ -568,6 +568,11 @@ body {
 .modulo-card--destaque {
   background: rgba(var(--teal-rgb), 0.08);
   border-color: rgba(var(--teal-rgb), 0.25);
+  grid-column: span 2;
+}
+
+/* Card 06 — Plexo Pélvico: span 2 para layout 4+2+4 simétrico */
+.modulos-grid .modulo-card:nth-child(6) {
   grid-column: span 2;
 }
 
@@ -1319,7 +1324,13 @@ details[open] .faq-pergunta { color: var(--teal); }
     max-width: 500px;
   }
 
+  .modulos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .modulo-card--destaque {
+    grid-column: span 1;
+  }
+  .modulos-grid .modulo-card:nth-child(6) {
     grid-column: span 1;
   }
 }
@@ -1395,7 +1406,8 @@ details[open] .faq-pergunta { color: var(--teal); }
   .modulos-grid {
     grid-template-columns: 1fr;
   }
-  .modulo-card--destaque {
+  .modulo-card--destaque,
+  .modulos-grid .modulo-card:nth-child(6) {
     grid-column: span 1;
   }
 
