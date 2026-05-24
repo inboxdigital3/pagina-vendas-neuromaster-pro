@@ -1251,9 +1251,12 @@ details[open] .faq-pergunta { color: var(--teal); }
   font-size: clamp(1.75rem, 3.5vw, 3rem);
   font-weight: 900;
   color: var(--white);
-  line-height: 1.1;
+  line-height: 1.2;
   letter-spacing: -0.025em;
   margin-bottom: 1.5rem;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cta-final-sub {
@@ -1276,6 +1279,7 @@ details[open] .faq-pergunta { color: var(--teal); }
   margin-bottom: 2.5rem;
 }
 .urgencia-box strong { color: var(--teal); }
+.urgencia-texto { flex: 1; }
 
 .cta-final-detalhe {
   margin-top: 1.25rem;
