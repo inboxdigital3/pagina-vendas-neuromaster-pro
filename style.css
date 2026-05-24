@@ -201,19 +201,20 @@ body {
   background: var(--teal);
   color: var(--navy);
   font-family: var(--font);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 800;
   letter-spacing: 0.5px;
   text-decoration: none;
-  padding: 0.875rem 2rem;
+  padding: 1rem 2.25rem;
   border-radius: 6px;
   border: none;
   cursor: pointer;
+  box-shadow: 0 4px 18px rgba(var(--teal-rgb), 0.35);
   transition: transform var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
 }
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(var(--teal-rgb), 0.45);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 36px rgba(var(--teal-rgb), 0.55);
 }
 .btn-primary--grande {
   font-size: 1rem;
@@ -233,40 +234,68 @@ body {
 /* ════════════════════════════════════════
    HERO
    First-fold rule: hero cabe em 1280×720 e 1366×768.
-   Nav (57px) + hero (≤calc(100vh - 57px)) — CTA visível sem scroll.
+   Nav (57px) + hero — CTA visível sem scroll.
+   Altura aumentada para não cortar a cabeça do Dr. André.
+   Imagem reposicionada: zoom reduzido, André centralizado.
+   Background dividido: navy escuro à esquerda (proteção do texto),
+   tom sépia/marrom à direita (combina com parede da foto).
 ════════════════════════════════════════ */
 .hero {
   position: relative;
-  min-height: calc(100vh - 57px);
-  max-height: calc(100vh - 57px);
+  min-height: min(calc(100vh - 57px), 820px);
+  max-height: min(calc(100vh - 57px), 820px);
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: var(--navy-deep);
+  /* Background dividido: navy à esquerda, sépia-marrom à direita */
+  background: linear-gradient(90deg,
+    #0D1530 0%,
+    #0D1530 42%,
+    #2A1E14 62%,
+    #3B2817 100%
+  );
+}
+
+/* Em telas muito baixas (≤720px altura), garante pelo menos 620px */
+@media (max-height: 720px) {
+  .hero {
+    min-height: 620px;
+    max-height: 620px;
+  }
 }
 
 .hero-img {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  /* Foto ocupa a metade direita — André fica visível do pescoço pra cima */
+  left: 32%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 68%;
   height: 100%;
   object-fit: cover;
-  object-position: 72% center;
+  /* Reposiciona para mostrar André centralizado, cabeça incluída */
+  object-position: 35% top;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
   background:
+    /* Proteção forte do lado esquerdo (texto) */
     linear-gradient(to right,
-      rgba(13, 21, 48, 0.97) 0%,
-      rgba(13, 21, 48, 0.92) 28%,
-      rgba(13, 21, 48, 0.65) 55%,
-      transparent 78%
+      rgba(13, 21, 48, 0.99) 0%,
+      rgba(13, 21, 48, 0.97) 25%,
+      rgba(13, 21, 48, 0.80) 40%,
+      rgba(13, 21, 48, 0.30) 55%,
+      transparent 72%
     ),
-    linear-gradient(to top,
-      rgba(13, 21, 48, 0.4) 0%,
-      transparent 40%
+    /* Sombra suave no topo e fundo para enquadrar */
+    linear-gradient(to bottom,
+      rgba(13, 21, 48, 0.35) 0%,
+      transparent 20%,
+      transparent 75%,
+      rgba(13, 21, 48, 0.5) 100%
     );
 }
 
@@ -275,16 +304,17 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 15% 50%, rgba(var(--teal-rgb), 0.08) 0%, transparent 55%);
+  background: radial-gradient(ellipse at 15% 50%, rgba(var(--teal-rgb), 0.07) 0%, transparent 50%);
   pointer-events: none;
 }
 
 .hero-content {
   position: relative;
   z-index: 10;
-  max-width: 580px;
-  /* padding-top: accent-stripe (3px) + nav (54px) + folga (10px) = 67px fixo */
-  padding: 67px var(--wrap-pad) 1rem;
+  /* Coluna de texto limitada a 44% — não invade a área do André */
+  max-width: min(480px, 44vw);
+  /* padding-top: accent-stripe (3px) + nav (54px) + folga (16px) = 73px */
+  padding: 73px var(--wrap-pad) 1.5rem;
   margin-left: max(var(--wrap-pad), calc((100vw - var(--wrap-max)) / 2));
 }
 
@@ -316,10 +346,17 @@ body {
 }
 .hero-sub strong { color: var(--white); font-weight: 700; }
 
+/* CTA no hero: garante separação visual clara do bloco de preço abaixo */
+.hero-content .btn-primary {
+  display: block;
+  margin-bottom: 0.75rem;
+  width: fit-content;
+}
+
 .hero-price-hint {
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.4);
-  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 0;
   letter-spacing: 0.5px;
 }
 
@@ -1220,6 +1257,11 @@ details[open] .faq-pergunta { color: var(--teal); }
    RESPONSIVE — TABLET
 ════════════════════════════════════════ */
 @media (max-width: 1024px) {
+  /* Hero tablet: ajusta a coluna de texto para não ficar muito estreita */
+  .hero-content {
+    max-width: min(420px, 48vw);
+  }
+
   .dor-grid {
     grid-template-columns: 1fr;
   }
@@ -1260,21 +1302,30 @@ details[open] .faq-pergunta { color: var(--teal); }
     --section-v: 3.25rem;
   }
 
-  /* Hero mobile: imagem no topo */
+  /* Hero mobile: imagem no topo, layout em coluna */
   .hero {
     flex-direction: column;
     align-items: stretch;
     min-height: auto;
+    max-height: none;
+    background: var(--navy-deep);
   }
   .hero-img {
+    /* Reseta o posicionamento absoluto do desktop */
     position: relative;
-    height: 42vh;
-    object-position: center 20%;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    height: 48vh;
+    object-fit: cover;
+    object-position: 35% top;
   }
   .hero-overlay {
     background: linear-gradient(to top,
       rgba(13, 21, 48, 1) 0%,
-      rgba(13, 21, 48, 0.8) 40%,
+      rgba(13, 21, 48, 0.75) 40%,
       transparent 100%
     );
   }
