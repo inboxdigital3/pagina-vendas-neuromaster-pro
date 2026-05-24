@@ -356,10 +356,12 @@ body {
 }
 
 /* CTA no hero: garante separação visual clara do bloco de preço abaixo */
+/* opacity: 1 forçado — garante visibilidade mesmo se animação stagger não completar */
 .hero-content .btn-primary {
   display: block;
   margin-bottom: 0.75rem;
   width: fit-content;
+  opacity: 1 !important;
 }
 
 .hero-price-hint {
