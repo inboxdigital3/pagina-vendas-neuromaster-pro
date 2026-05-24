@@ -267,12 +267,12 @@ body {
 
 .hero-img {
   position: absolute;
-  /* Foto ocupa a metade direita — André fica visível do pescoço pra cima */
-  left: 32%;
+  /* Foto avança para a esquerda — braço/ombro do André fica sob a coluna de texto */
+  left: 22%;
   right: 0;
   top: 0;
   bottom: 0;
-  width: 68%;
+  width: 78%;
   height: 100%;
   object-fit: cover;
   /* Reposiciona para mostrar André centralizado, cabeça incluída */
@@ -283,13 +283,13 @@ body {
   position: absolute;
   inset: 0;
   background:
-    /* Proteção forte do lado esquerdo (texto) */
+    /* Proteção forte do lado esquerdo (texto) — estendida para cobrir área da foto que avança */
     linear-gradient(to right,
       rgba(13, 21, 48, 0.99) 0%,
-      rgba(13, 21, 48, 0.97) 25%,
-      rgba(13, 21, 48, 0.80) 40%,
-      rgba(13, 21, 48, 0.30) 55%,
-      transparent 72%
+      rgba(13, 21, 48, 0.97) 30%,
+      rgba(13, 21, 48, 0.82) 44%,
+      rgba(13, 21, 48, 0.30) 58%,
+      transparent 74%
     ),
     /* Sombra suave no topo e fundo para enquadrar */
     linear-gradient(to bottom,
@@ -367,7 +367,7 @@ body {
 .hero-price-hint {
   font-size: 10px;
   color: rgba(255, 255, 255, 0.45);
-  margin-top: 0;
+  margin-top: 0.75rem;
   letter-spacing: 0.5px;
 }
 
