@@ -218,12 +218,12 @@ body {
 
 /* ════════════════════════════════════════
    HERO
-   First-fold rule: hero cabe em 1366×768.
-   Nav (71px) + hero (≤652px) = ≤723px — dentro da viewport.
+   First-fold rule: hero cabe em 1280×720 e 1366×768.
+   Nav (71px) + hero (≤600px) = ≤671px — dentro da viewport menor.
 ════════════════════════════════════════ */
 .hero {
   position: relative;
-  min-height: min(85vh, 680px);
+  min-height: min(82vh, 600px);
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -267,9 +267,9 @@ body {
 .hero-content {
   position: relative;
   z-index: 10;
-  max-width: 560px;
-  /* padding-top: compensa accent-stripe (3px) + nav (68px) + folga mínima (20px) */
-  padding: clamp(5.75rem, 12vh, 7rem) var(--wrap-pad) 2.5rem;
+  max-width: 620px;
+  /* padding-top: accent-stripe (3px) + nav (68px) + folga (16px) = 87px fixo */
+  padding: 87px var(--wrap-pad) 1.5rem;
   margin-left: max(var(--wrap-pad), calc((100vw - var(--wrap-max)) / 2));
 }
 
@@ -279,25 +279,25 @@ body {
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--teal);
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
 }
 
 .hero-headline {
-  /* Teto de 2.5rem (~40px) garante que a headline cabe na first fold em 1366×768 */
-  font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+  /* Teto 2rem (32px) — máx 3 linhas em 620px. Calibrado para 1280×720. */
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
   font-weight: 900;
   line-height: 1.1;
   letter-spacing: -0.025em;
   color: var(--white);
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.85rem;
 }
 
 .hero-sub {
-  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  font-size: clamp(0.8rem, 1.1vw, 0.9375rem);
   font-weight: 400;
   color: rgba(255, 255, 255, 0.72);
-  line-height: 1.65;
-  margin-bottom: 1.4rem;
+  line-height: 1.55;
+  margin-bottom: 1rem;
 }
 .hero-sub strong { color: var(--white); font-weight: 700; }
 
@@ -312,8 +312,8 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: 1.5rem;
-  padding-top: 1.25rem;
+  margin-top: 0.875rem;
+  padding-top: 0.875rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .proof-number {
