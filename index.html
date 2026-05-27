@@ -565,6 +565,42 @@
         }
       });
     });
+
+    // Propagação de sck e UTMs da URL pros links de checkout
+    (function propagarSck() {
+      var params = new URLSearchParams(window.location.search);
+      var sck         = params.get('sck');
+      var utmSource   = params.get('utm_source');
+      var utmMedium   = params.get('utm_medium');
+      var utmCampaign = params.get('utm_campaign');
+
+      if (!sck && !utmSource) return;
+
+      var propaga = new URLSearchParams();
+      if (sck)         propaga.set('sck', sck);
+      if (utmSource)   propaga.set('utm_source', utmSource);
+      if (utmMedium)   propaga.set('utm_medium', utmMedium);
+      if (utmCampaign) propaga.set('utm_campaign', utmCampaign);
+
+      var queryStr = propaga.toString();
+
+      document.querySelectorAll('a').forEach(function(a) {
+        var href = a.getAttribute('href');
+        if (!href) return;
+
+        // Placeholder ainda não substituído
+        if (href === '[LINK_CHECKOUT]') {
+          a.setAttribute('href', '[LINK_CHECKOUT]?' + queryStr);
+          return;
+        }
+
+        // Link Hotmart real
+        if (href.includes('hotmart.com') || href.includes('checkout.hotmart')) {
+          var sep = href.includes('?') ? '&' : '?';
+          a.setAttribute('href', href + sep + queryStr);
+        }
+      });
+    })();
   </script>
 
 </body>
