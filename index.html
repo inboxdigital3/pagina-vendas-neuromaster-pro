@@ -403,7 +403,7 @@
 
           <!-- Grupo de ação: botão + garantia -->
           <div class="acao-grupo">
-            <a href="[LINK_CHECKOUT]" class="btn-primary btn-primary--grande btn-pulse">
+            <a href="https://pay.hotmart.com/J103184398C?checkoutMode=6&off=gbowzri0&offDiscount=TURMA2&sck=zoom" class="btn-primary btn-primary--grande btn-pulse">
               Garantir minha vaga na pré-venda
             </a>
 
@@ -512,7 +512,7 @@
           <span class="urgencia-depois">Depois, R$ 2.497</span>
         </div>
 
-        <a href="[LINK_CHECKOUT]" class="btn-primary btn-primary--grande btn-pulse">
+        <a href="https://pay.hotmart.com/J103184398C?checkoutMode=6&off=gbowzri0&offDiscount=TURMA2&sck=zoom" class="btn-primary btn-primary--grande btn-pulse">
           Quero o NeuroMaster PRO — R$ 1.497
         </a>
 
@@ -567,38 +567,31 @@
     });
 
     // Propagação de sck e UTMs da URL pros links de checkout
+    // Usa searchParams.set() para SUBSTITUIR valor existente (não duplicar)
     (function propagarSck() {
       var params = new URLSearchParams(window.location.search);
-      var sck         = params.get('sck');
+      var sckNovo     = params.get('sck');
       var utmSource   = params.get('utm_source');
       var utmMedium   = params.get('utm_medium');
       var utmCampaign = params.get('utm_campaign');
 
-      if (!sck && !utmSource) return;
-
-      var propaga = new URLSearchParams();
-      if (sck)         propaga.set('sck', sck);
-      if (utmSource)   propaga.set('utm_source', utmSource);
-      if (utmMedium)   propaga.set('utm_medium', utmMedium);
-      if (utmCampaign) propaga.set('utm_campaign', utmCampaign);
-
-      var queryStr = propaga.toString();
+      // Se nenhum parâmetro veio na URL, mantém o link Hotmart com sck padrão (zoom)
+      if (!sckNovo && !utmSource && !utmMedium && !utmCampaign) return;
 
       document.querySelectorAll('a').forEach(function(a) {
         var href = a.getAttribute('href');
-        if (!href) return;
+        if (!href || !href.includes('hotmart.com')) return;
 
-        // Placeholder ainda não substituído
-        if (href === '[LINK_CHECKOUT]') {
-          a.setAttribute('href', '[LINK_CHECKOUT]?' + queryStr);
-          return;
-        }
+        var url;
+        try { url = new URL(href); } catch (e) { return; }
 
-        // Link Hotmart real
-        if (href.includes('hotmart.com') || href.includes('checkout.hotmart')) {
-          var sep = href.includes('?') ? '&' : '?';
-          a.setAttribute('href', href + sep + queryStr);
-        }
+        // SUBSTITUI se existir, ADICIONA se não — evita duplicação de parâmetros
+        if (sckNovo)     url.searchParams.set('sck', sckNovo);
+        if (utmSource)   url.searchParams.set('utm_source', utmSource);
+        if (utmMedium)   url.searchParams.set('utm_medium', utmMedium);
+        if (utmCampaign) url.searchParams.set('utm_campaign', utmCampaign);
+
+        a.setAttribute('href', url.toString());
       });
     })();
   </script>
